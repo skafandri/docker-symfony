@@ -3,9 +3,7 @@ FROM php:7.0-fpm
 
 MAINTAINER Maxence POUTORD <maxence.poutord@gmail.com>
 
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip
+RUN apt-get update && apt-get install -y git unzip nano
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -13,7 +11,7 @@ RUN composer --version
 
 # Set timezone
 RUN rm /etc/localtime
-RUN ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
+RUN ln -s /usr/share/zoneinfo/GMT /etc/localtime
 RUN "date"
 
 # Type docker-php-ext-install to see available extensions
@@ -34,5 +32,6 @@ RUN echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-x
 
 RUN echo 'alias sf="php app/console"' >> ~/.bashrc
 RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
+RUN echo 'alias ll="ls -la"' >> ~/.bashrc
 
 WORKDIR /var/www/symfony

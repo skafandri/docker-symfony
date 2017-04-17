@@ -1,3 +1,6 @@
 /logs
 /.data
 .env
+.idea
+data
+symfony
